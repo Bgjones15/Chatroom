@@ -32,14 +32,20 @@ $(document).ready(function(){
     });
     
     socket.on('chat', function(data){
+        if(data.message == ""){
+            return false;
+        }
+        let dt = new Date();
+        let time = dt.getHours() + ":" + dt.getMinutes();
         $('#feedback').empty();
-        //<img src='/w3images/bandmember.jpg' alt='Avatar'>
-        //<img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right">
+        
+        //<img src='https://www.w3schools.com/tags/smiley.gif' alt='Avatar'>
+        //<img src='https://www.w3schools.com/tags/smiley.gif' alt="Avatar" class="right">
         if(data.name == socket.username){
-            $('#output').append("<div class='container darker'><strong>"+data.name+"</strong><p>"+data.message+"</p> <span class='time-left'>11:00</span </div>");
+            $('#output').append("<div class='container darker'><img src='https://www.w3schools.com/tags/smiley.gif' alt='Avatar' class='right'><strong>"+data.name+"</strong><p>"+data.message+"</p> <span class='time-left'>"+time+"</span </div>");
         }
         else{
-            $('#output').append("<div class='container'><strong>"+data.name+"</strong><p>"+data.message+"</p> <span class='time-right'>11:00</span </div>");
+            $('#output').append("<div class='container'><img src='https://www.w3schools.com/tags/smiley.gif' alt='Avatar'><strong>"+data.name+"</strong><p>"+data.message+"</p> <span class='time-right'>11:00</span </div>");
         }
         $('#chat-window').scrollTop($('#chat-window')[0].scrollHeight);
     });

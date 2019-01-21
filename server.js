@@ -1,15 +1,19 @@
 const express = require('express');
 const socket = require('socket.io');
+const helmet = require('helmet');
+
+var sanitizeHtml = require('sanitize-html');
 
 var connections = [];
 var users = [];
 
 const app = express();
+app.use(helmet());
+app.use(express.static("public"));
+
 const server = app.listen(3000, function(){
     console.log("Server running...");
 });
-
-app.use(express.static('public'));
 
 const io = socket(server);
 
@@ -28,13 +32,15 @@ io.on('connection', function(socket){
     
     socket.on('new user', function(data, callback){
         callback(true);
-        socket.username = data;
+        socket.username = sanitizeHtml(data);
         users.push(socket.username);
         io.sockets.emit('log', socket.username+" has joined the chat!");
         updateUsernames();
     });
     
     socket.on('chat', function(data){
+        data.name = sanitizeHtml(data.name);
+        data.message = sanitizeHtml(data.message);
         io.sockets.emit('chat', data);
     });
     
