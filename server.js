@@ -31,11 +31,14 @@ io.on('connection', function(socket){
     });
     
     socket.on('new user', function(data, callback){
-        callback(true);
-        socket.username = sanitizeHtml(data);
-        users.push(socket.username);
-        io.sockets.emit('log', socket.username+" has joined the chat!");
-        updateUsernames();
+        let username = sanitizeHtml(data);
+        if(username){
+            callback(true);
+            socket.username = username;
+            users.push(socket.username);
+            io.sockets.emit('log', socket.username+" has joined the chat!");
+            updateUsernames();
+        }
     });
     
     socket.on('chat', function(data){
