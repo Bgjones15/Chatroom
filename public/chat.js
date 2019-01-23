@@ -22,7 +22,7 @@ $(document).ready(function(){
         e.preventDefault();
         socket.emit('new user', $('#username').val(), function(data){
             if(data){
-                $('#userForm').hide();
+                $('#login').hide();
                 $('#chat').show();
                 $('#output').empty();
             }
@@ -52,7 +52,7 @@ $(document).ready(function(){
     
     socket.on('log', function(data){
         $('#output').append("<p>"+data+"</p>");
-    })
+    });
     
     var timer = null;
     var duration = 2000;
@@ -66,11 +66,10 @@ $(document).ready(function(){
     });
     
     socket.on('get users', function(data){
-        var html = '';
+        $('#userList').empty();
         for(i = 0; i< data.length; i++){
-            html += "<li>"+data[i]+"</li>";
+            $('#userList').append("<li>"+data[i]+"</li>");
         }
-        $('#userList').html(html);
     });
     
 });

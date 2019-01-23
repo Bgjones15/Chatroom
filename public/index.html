@@ -6,21 +6,42 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="chat.js"></script>
 </head>
     <body>
+        <div id="login" class="wrapper fadeInDown">
+          <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+              <img src="https://static.thenounproject.com/png/32396-200.png" id="icon" alt="User Icon">
+            </div>
+
+            <!-- Login Form -->
+            <form id="userForm">
+              <input type="text" id="username" class="fadeIn second" name="login" placeholder="login">
+              <!--<input type="text" id="password" class="fadeIn third" name="login" placeholder="password"> -->
+              <input type="submit" class="fadeIn fourth" value="Log In">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+              <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+
+          </div>
+        </div>
         
-        <form id ="userForm">
-            <input type="text" id="username">
-            <input type="submit">
-        </form>
         
         
-        
-        <div id="chat" hidden>
-            
+        <div id="chat">
+         
+        <h3 class="list-heading">Online Users</h3>
         <ul id="userList"></ul>
             
         <div id="chatOutput">
@@ -35,7 +56,7 @@
             
             <form id="sendMessage">
             <input id="message" type="test">
-            <input type="submit" value="Send">
+            <input class="chatButton" type="submit" value="Send">
             </form>
             
         </div>
