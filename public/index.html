@@ -24,8 +24,8 @@
 
             <!-- Login Form -->
             <form id="userForm">
-              <input type="text" id="username" class="fadeIn second" name="login" placeholder="login">
-              <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+              <input type="text" id="username" class="fadeIn second" name="login" placeholder="login" onblur="this.placeholder = 'login'" onfocus="this.placeholder = ''">
+              <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" onblur="this.placeholder = 'password'" onfocus="this.placeholder = ''">
               <input id="loginBtn" type="submit" class="fadeIn fourth" value="Log In">
             </form>
 
